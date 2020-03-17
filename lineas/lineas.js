@@ -22,7 +22,7 @@ var morris1 = new Morris.Line({
     lineColors:['#C14d9f','#2CB4AC','#2CB4AC']
   });
   // Use Morris.Area instead of Morris.Line
-  new Morris.Area({
+var morris2 = new Morris.Area({
     element: 'mysecondchart',
     data: [
       {x: '2010 Q4', y: 3, z: 7},
@@ -56,4 +56,16 @@ var morris1 = new Morris.Line({
       { year: '2017', value: 20, value2:  30},
     ];
     morris1.setData(nuevaData);
+  });
+  $("#mySecondButton").on("click",function(){
+    console.log(morris2);
+    var nuevoData2=[
+      {x: '2010 Q4', y: 4, z: 10},
+      {x: '2011 Q1', y: 34, z: 20},
+      {x: '2011 Q2', y: 2, z: 2},
+      {x: '2011 Q3', y: 43, z: 12},
+      {x: '2011 Q4', y: 55, z: 22},
+      {x: '2012 Q1', y: 45, z: 43}
+    ];
+    morris2.setData(nuevoData2);
   });

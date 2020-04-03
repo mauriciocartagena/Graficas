@@ -12,7 +12,6 @@ $conn = new mysqli($server,$username,$password,$database);
 if($conn->connect_error){
     die("connection failed".$conn->connect_error);
 }
-echo "Connection Success";
 
 
 $sql="SELECT COUNT(*) as cantidad_edificio_comteco,
@@ -159,7 +158,6 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 $chart_data = substr($chart_data,0,-2);
-echo $chart_data;
 
 ?>
 <!DOCTYPE html>

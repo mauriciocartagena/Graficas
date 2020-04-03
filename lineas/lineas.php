@@ -19,49 +19,85 @@ $sql="SELECT COUNT(*) as cantidad_edificio_comteco,
 -- cantidades de las sucursales--
 
 --  cantidad de la sucursal de muyurina --
-(SELECT COUNT(*) FROM control.ingreso_salida_visitante 
-    WHERE estado='1' 
-    AND id_sucursal='2') AS cantidad_edificio_muyurina,
+(SELECT COUNT(*) FROM 	control.ingreso_salida_visitante i 
+                 JOIN 	control.sucursal s 
+                 JOIN 	control.persona p 
+                 WHERE	i.id_sucursal	= s.id_sucursal 
+                 AND 	i.id_persona	= p.id_persona 
+                 AND 	i.estado='1'
+                 AND 	i.id_sucursal='2') AS cantidad_edificio_muyurina,
     
 --  cantidad de la sucursal de km0 --
-(SELECT COUNT(*) FROM control.ingreso_salida_visitante 
-    WHERE estado='1' 
-    AND id_sucursal='3') AS cantidad_edificio_km0,
+(SELECT COUNT(*) FROM 	control.ingreso_salida_visitante i 
+                 JOIN 	control.sucursal s 
+                 JOIN 	control.persona p 
+                 WHERE	i.id_sucursal	= s.id_sucursal 
+                 AND 	i.id_persona	= p.id_persona 
+                 AND 	i.estado='1'
+                 AND 	i.id_sucursal='3') AS cantidad_edificio_km0,
     
 --  cantidad de la sucursal de hipodromo --
-(SELECT COUNT(*) FROM control.ingreso_salida_visitante 
-    WHERE estado='1' 
-    AND id_sucursal='4') AS cantidad_edificio_hipodromo,
+(SELECT COUNT(*) FROM 	control.ingreso_salida_visitante i 
+                 JOIN 	control.sucursal s 
+                 JOIN 	control.persona p 
+                 WHERE	i.id_sucursal	= s.id_sucursal 
+                 AND 	i.id_persona	= p.id_persona 
+                 AND 	i.estado='1'
+                 AND 	i.id_sucursal='4') AS cantidad_edificio_hipodromo,
     
 --  cantidad de la sucursal de quillacollo --
-(SELECT COUNT(*) FROM control.ingreso_salida_visitante 
-    WHERE estado='1' 
-    AND id_sucursal='5') AS cantidad_edificio_quillacollo,
+(SELECT COUNT(*) FROM 	control.ingreso_salida_visitante i 
+                 JOIN 	control.sucursal s 
+                 JOIN 	control.persona p 
+                 WHERE	i.id_sucursal	= s.id_sucursal 
+                 AND 	i.id_persona	= p.id_persona 
+                 AND 	i.estado='1'
+                 AND 	i.id_sucursal='5') AS cantidad_edificio_quillacollo,
     
 --  cantidad de la sucursal de administrativo --
-(SELECT COUNT(*) FROM control.ingreso_salida_visitante 
-    WHERE estado='1' 
-    AND id_sucursal='6') AS cantidad_edificio_administrativo,
+(SELECT COUNT(*) FROM 	control.ingreso_salida_visitante i 
+                 JOIN 	control.sucursal s 
+                 JOIN 	control.persona p 
+                 WHERE	i.id_sucursal	= s.id_sucursal 
+                 AND 	i.id_persona	= p.id_persona 
+                 AND 	i.estado='1'
+                 AND 	i.id_sucursal='6') AS cantidad_edificio_administrativo,
     
 --  cantidad de la sucursal de tecnico --
-(SELECT COUNT(*) FROM control.ingreso_salida_visitante 
-    WHERE estado='1' 
-    AND id_sucursal='7') AS cantidad_edificio_tecnico,
+(SELECT COUNT(*) FROM 	control.ingreso_salida_visitante i 
+                 JOIN 	control.sucursal s 
+                 JOIN 	control.persona p 
+                 WHERE	i.id_sucursal	= s.id_sucursal 
+                 AND 	i.id_persona	= p.id_persona 
+                 AND 	i.estado='1'
+                 AND 	i.id_sucursal='7') AS cantidad_edificio_tecnico,
     
 --  cantidad de la sucursal de edificio norte --
-(SELECT COUNT(*) FROM control.ingreso_salida_visitante 
-    WHERE estado='1' 
-    AND id_sucursal='8') AS cantidad_edificio_norte,
+(SELECT COUNT(*) FROM 	control.ingreso_salida_visitante i 
+                 JOIN 	control.sucursal s 
+                 JOIN 	control.persona p 
+                 WHERE	i.id_sucursal	= s.id_sucursal 
+                 AND 	i.id_persona	= p.id_persona 
+                 AND 	i.estado='1' 
+                 AND 	i.id_sucursal='8') AS cantidad_edificio_norte,
     
 --  cantidad de la sucursal de edificio sud --
-(SELECT COUNT(*) FROM control.ingreso_salida_visitante 
-    WHERE estado='1' 
-    AND id_sucursal='9') AS cantidad_edificio_sud,
+(SELECT COUNT(*) FROM 	control.ingreso_salida_visitante i 
+                 JOIN 	control.sucursal s 
+                 JOIN 	control.persona p 
+                 WHERE	i.id_sucursal	= s.id_sucursal 
+                 AND 	i.id_persona	= p.id_persona 
+                 AND 	i.estado='1' 
+                 AND 	i.id_sucursal='9') AS cantidad_edificio_sud,
     
 --  cantidad de la sucursal de sucre --
-(SELECT COUNT(*) FROM control.ingreso_salida_visitante 
-    WHERE estado='1' 
-    AND id_sucursal='10') AS cantidad_edificio_sucre,
+(SELECT COUNT(*) FROM 	control.ingreso_salida_visitante i 
+                 JOIN 	control.sucursal s 
+                 JOIN 	control.persona p 
+                 WHERE	i.id_sucursal	= s.id_sucursal 
+                 AND 	i.id_persona	= p.id_persona 
+                 AND 	i.estado='1'
+                 AND	i.id_sucursal='10') AS cantidad_edificio_sucre,
     
 --  nombres de las sucursales
 
@@ -114,9 +150,14 @@ $sql="SELECT COUNT(*) as cantidad_edificio_comteco,
 (SELECT nombre FROM control.sucursal 
     WHERE  control.sucursal.id_sucursal=10
     AND control.sucursal.estado=1) AS nombre_sucursal_sucre
-FROM control.ingreso_salida_visitante 
-WHERE estado='1' 
-AND id_sucursal='1';";
+FROM 	control.ingreso_salida_visitante i 
+JOIN 	control.sucursal s 
+JOIN 	control.persona p 
+
+WHERE	i.id_sucursal	= s.id_sucursal 
+AND 	i.id_persona	= p.id_persona 
+AND 	i.estado='1'
+AND 	i.id_sucursal='1';";
 
 //Cantidad de personas
 

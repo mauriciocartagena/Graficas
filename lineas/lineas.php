@@ -118,10 +118,36 @@ FROM control.ingreso_salida_visitante
 WHERE estado='1' 
 AND id_sucursal='1';";
 
+//Cantidad de personas
+
+$sql1="SELECT COUNT(*) AS empleados,
+-- subconsultas --
+
+-- cantidad de guardias --
+(SELECT COUNT(*) FROM control.guardia
+ WHERE control.guardia.estado=1) AS guardias,
+ 
+-- cantidad de visitantes --
+(SELECT COUNT(*) FROM control.visitante
+ WHERE control.visitante.estado=1) AS visitantes,
+
+-- cantidad de conductores --
+(SELECT COUNT(*) FROM control.conductores
+ WHERE control.conductores.estado=1) AS conductores
+
+
+FROM  control.empleado 
+WHERE control.empleado.estado=1;";
+
+
 //resulatados de los  Query
 $result = $conn->query($sql);
+$result1 = $conn->query($sql1);
 
+//Almacenamiento de datos
 $chart_data='';
+$chart_data1='';
+
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
@@ -156,8 +182,31 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
+
+if ($result1->num_rows > 0) {
+    // output data of each row
+    while($row = $result1->fetch_assoc()) {
+        $chart_data1 .= "
+
+                {   value:            ".$row["empleados"].               ", label: 'Empleados'},
+                {   value:            ".$row["guardias"].                ", label: 'Guardias'},
+                {   value:            ".$row["visitantes"].              ", label: 'Visitantes'},
+                {   value:            ".$row["conductores"].             ", label: 'Conductores'}
+                ";
+
+    }
+} else {
+    echo "0 results";
+}
+
+
 $conn->close();
+
+//subtrayendo datos
 $chart_data = substr($chart_data,0,-2);
+$chart_data1 = substr($chart_data1,0,-2);
+
+echo $chart_data1;
 
 ?>
 <!DOCTYPE html>
@@ -243,4 +292,26 @@ var morris1 = new Morris.Bar({
     lineColors:['#C14d9f','#2CB4AC','#2CB4AC']
   });
 
+  // Use Morris.Area instead of Morris.Line
+
+
+Morris.Donut({
+    element: 'mysecondchart',
+    data: [
+
+        <?php echo $chart_data1 ?>
+
+    ],
+  labelColor: 'blue',
+  colors: [
+    'skyeblue',
+    '#39B580',
+    '#67C69D',
+    '#95D7BB'
+  ],
+    resize:true,
+    formatter: function (x) { return x + ""}
+    }).on('click', function(i, row){
+    console.log(i, row);
+});
 </script>

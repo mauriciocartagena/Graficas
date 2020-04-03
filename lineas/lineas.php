@@ -139,14 +139,160 @@ $sql1="SELECT COUNT(*) AS empleados,
 FROM  control.empleado 
 WHERE control.empleado.estado=1;";
 
+$sql2="SELECT COUNT(*) as cantidad_edificio_comteco,
+
+		-- subconsultas-- 
+		-- cantidades de las sucursales--
+
+		--  cantidad de la sucursal de muyurina --
+		(SELECT COUNT(*)	FROM 		control.ingresos_vehiculo i 
+							INNER JOIN  control.sucursal s 
+							INNER JOIN  control.vehiculo v
+							INNER JOIN  control.escalera es 
+							INNER JOIN  control.persona p
+										
+							WHERE 		i.id_persona=p.id_persona   
+							AND   		i.id_sucursal=s.id_sucursal
+							AND   		i.id_vehiculo=v.id_vehiculo 
+							AND   		i.id_escalera=es.id_escalera 
+							AND   		i.estado='1'
+							AND   		i.id_sucursal='2') AS cantidad_edificio_muyurina,
+			
+		--  cantidad de la sucursal de km0 --
+		(SELECT COUNT(*) 	FROM 		control.ingresos_vehiculo i 
+							INNER JOIN  control.sucursal s 
+							INNER JOIN  control.vehiculo v
+							INNER JOIN  control.escalera es 
+							INNER JOIN  control.persona p
+										
+							WHERE 		i.id_persona=p.id_persona   
+							AND   		i.id_sucursal=s.id_sucursal
+							AND   		i.id_vehiculo=v.id_vehiculo 
+							AND   		i.id_escalera=es.id_escalera 
+							AND   		i.estado='1' 
+							AND 		i.id_sucursal='3') AS cantidad_edificio_km0,
+			
+		--  cantidad de la sucursal de hipodromo --
+		(SELECT COUNT(*) 	FROM 		control.ingresos_vehiculo i 
+							INNER JOIN  control.sucursal s 
+							INNER JOIN  control.vehiculo v
+							INNER JOIN  control.escalera es 
+							INNER JOIN  control.persona p
+										
+							WHERE 		i.id_persona=p.id_persona   
+							AND   		i.id_sucursal=s.id_sucursal
+							AND   		i.id_vehiculo=v.id_vehiculo 
+							AND   		i.id_escalera=es.id_escalera 
+							AND   		i.estado='1'  
+							AND 		i.id_sucursal='4') AS cantidad_edificio_hipodromo,
+			
+		--  cantidad de la sucursal de quillacollo --
+		(SELECT COUNT(*) 	FROM 		control.ingresos_vehiculo i 
+							INNER JOIN  control.sucursal s 
+							INNER JOIN  control.vehiculo v
+							INNER JOIN  control.escalera es 
+							INNER JOIN  control.persona p
+										
+							WHERE 		i.id_persona=p.id_persona   
+							AND   		i.id_sucursal=s.id_sucursal
+							AND   		i.id_vehiculo=v.id_vehiculo 
+							AND   		i.id_escalera=es.id_escalera 
+							AND   		i.estado='1' 
+							AND 		i.id_sucursal='5') AS cantidad_edificio_quillacollo,
+			
+		--  cantidad de la sucursal de administrativo --
+		(SELECT COUNT(*) 	FROM 		control.ingresos_vehiculo i 
+							INNER JOIN  control.sucursal s 
+							INNER JOIN  control.vehiculo v
+							INNER JOIN  control.escalera es 
+							INNER JOIN  control.persona p
+										
+							WHERE 		i.id_persona=p.id_persona   
+							AND   		i.id_sucursal=s.id_sucursal
+							AND   		i.id_vehiculo=v.id_vehiculo 
+							AND   		i.id_escalera=es.id_escalera 
+							AND   		i.estado='1'  
+							AND 		i.id_sucursal='6') AS cantidad_edificio_administrativo,
+			
+		--  cantidad de la sucursal de tecnico --
+		(SELECT COUNT(*) 	FROM 		control.ingresos_vehiculo i 
+							INNER JOIN  control.sucursal s 
+							INNER JOIN  control.vehiculo v
+							INNER JOIN  control.escalera es 
+							INNER JOIN  control.persona p
+										
+							WHERE 		i.id_persona=p.id_persona   
+							AND   		i.id_sucursal=s.id_sucursal
+							AND   		i.id_vehiculo=v.id_vehiculo 
+							AND   		i.id_escalera=es.id_escalera 
+							AND   		i.estado='1' 
+							AND 		i.id_sucursal='7') AS cantidad_edificio_tecnico,
+			
+		--  cantidad de la sucursal de edificio norte --
+		(SELECT COUNT(*) 	FROM 		control.ingresos_vehiculo i 
+							INNER JOIN  control.sucursal s 
+							INNER JOIN  control.vehiculo v
+							INNER JOIN  control.escalera es 
+							INNER JOIN  control.persona p
+										
+							WHERE 		i.id_persona=p.id_persona   
+							AND   		i.id_sucursal=s.id_sucursal
+							AND   		i.id_vehiculo=v.id_vehiculo 
+							AND   		i.id_escalera=es.id_escalera 
+							AND   		i.estado='1'  
+							AND 		i.id_sucursal='8') AS cantidad_edificio_norte,
+			
+		--  cantidad de la sucursal de edificio sud --
+		(SELECT COUNT(*)	FROM 		control.ingresos_vehiculo i 
+							INNER JOIN  control.sucursal s 
+							INNER JOIN  control.vehiculo v
+							INNER JOIN  control.escalera es 
+							INNER JOIN  control.persona p
+										
+							WHERE 		i.id_persona=p.id_persona   
+							AND   		i.id_sucursal=s.id_sucursal
+							AND   		i.id_vehiculo=v.id_vehiculo 
+							AND   		i.id_escalera=es.id_escalera 
+							AND   		i.estado='1'  
+							AND 		i.id_sucursal='9') AS cantidad_edificio_sud,
+			
+		--  cantidad de la sucursal de sucre --
+		(SELECT COUNT(*) 	FROM 		control.ingresos_vehiculo i 
+							INNER JOIN  control.sucursal s 
+							INNER JOIN  control.vehiculo v
+							INNER JOIN  control.escalera es 
+							INNER JOIN  control.persona p
+										
+							WHERE 		i.id_persona=p.id_persona   
+							AND   		i.id_sucursal=s.id_sucursal
+							AND   		i.id_vehiculo=v.id_vehiculo 
+							AND   		i.id_escalera=es.id_escalera 
+							AND   		i.estado='1' 
+							AND 		i.id_sucursal='10') AS cantidad_edificio_sucre
+    
+	FROM 		control.ingresos_vehiculo i 
+	INNER JOIN  control.sucursal s 
+	INNER JOIN  control.vehiculo v
+	INNER JOIN  control.escalera es 
+	INNER JOIN  control.persona p
+				
+	WHERE 		i.id_persona=p.id_persona   
+	AND   		i.id_sucursal=s.id_sucursal
+	AND   		i.id_vehiculo=v.id_vehiculo 
+	AND   		i.id_escalera=es.id_escalera 
+	AND   		i.estado=1
+	AND   		i.id_sucursal=1;";
+
 
 //resulatados de los  Query
 $result = $conn->query($sql);
 $result1 = $conn->query($sql1);
+$result2 = $conn->query($sql2);
 
 //Almacenamiento de datos
 $chart_data='';
 $chart_data1='';
+$chart_data2='';
 
 if ($result->num_rows > 0) {
     // output data of each row
@@ -198,6 +344,27 @@ if ($result1->num_rows > 0) {
 } else {
     echo "0 results";
 }
+if($result2->num_rows>0){
+    while($row=$result2->fetch_assoc()){
+        $chart_data2 .="
+            {
+                cantidad_edificio_comteco:          ".$row["cantidad_edificio_comteco"].               ",
+                cantidad_edificio_muyurina:         ".$row["cantidad_edificio_muyurina"].              ",
+                cantidad_edificio_km0:              ".$row["cantidad_edificio_km0"].                   ",
+                cantidad_edificio_hipodromo:        ".$row["cantidad_edificio_hipodromo"].             ",
+                cantidad_edificio_quillacollo:      ".$row["cantidad_edificio_quillacollo"].           ",
+                cantidad_edificio_administrativo:   ".$row["cantidad_edificio_administrativo"].        ",
+                cantidad_edificio_norte:            ".$row["cantidad_edificio_norte"].                 ",
+                cantidad_edificio_sud:              ".$row["cantidad_edificio_sud"].                   ",
+                cantidad_edificio_sucre:            ".$row["cantidad_edificio_sucre"].                 ",
+
+                nombre:                             'Ingreso y salidas de Vehiculos                    ',
+            }
+        ";
+    }
+}else{
+    echo "0 results";
+}
 
 
 $conn->close();
@@ -205,8 +372,7 @@ $conn->close();
 //subtrayendo datos
 $chart_data = substr($chart_data,0,-2);
 $chart_data1 = substr($chart_data1,0,-2);
-
-echo $chart_data1;
+$chart_data2 = substr($chart_data2,0,-2);
 
 ?>
 <!DOCTYPE html>
@@ -227,21 +393,30 @@ echo $chart_data1;
         <hr>
             <div class="row">
                 <div class="col-md-6">
-                    <h2>Grafica de Linea</h2>
+                    <h2>Cantidad de ingresos de visitantes</h2>
                     <hr>
                     <div id="myfirstchart"></div>
-                    <button type="button" id="botData" class="btn btn-primary">
-                        Cargar Data
+                    <!-- <button type="button" id="botData" class="btn btn-primary">
+                        Cargar Data -->
                 </div>
                     </button>
                 <div class="col-md-6">
-                    <h2>Grafico de Area</h2>
+                    <h2>Grafico de cantidad de Personas</h2>
                     <hr>
                     <div id="mysecondchart"></div>
-                    <button id="mySecondButton" type="button" class="btn btn-primary">
-                            Cargar Nuevos Datos
+                    <!-- <button id="mySecondButton" type="button" class="btn btn-primary">
+                            Cargar Nuevos Datos -->
                     </button>
                 </div>
+                <div class="col-md-6">
+                    <h2>Cantidad de ingresos de vehiculos</h2>
+                    <hr>
+                    <div id="mythirdchart"></div>
+                    <!-- <button id="mySecondButton" type="button" class="btn btn-primary">
+                            Cargar Nuevos Datos -->
+                    </button>
+                </div>
+                
             </div>
          
 
@@ -314,4 +489,46 @@ Morris.Donut({
     }).on('click', function(i, row){
     console.log(i, row);
 });
+
+var morris2 = new Morris.Bar({
+    // ID of the element in which to draw the chart.
+    element: 'mythirdchart',
+    // Chart data records -- each entry in this array corresponds to a point on
+    // the chart.
+    data: [
+      <?php echo $chart_data2 ?>
+    ],
+    // The name of the data record attribute that contains x-values.
+    xkey: 'nombre',
+    // A list of names of data record attributes that contain y-values.
+    ykeys: [
+            'cantidad_edificio_comteco',
+            'cantidad_edificio_muyurina',
+            'cantidad_edificio_km0',
+            'cantidad_edificio_hipodromo',
+            'cantidad_edificio_quillacollo',
+            'cantidad_edificio_administrativo',
+            'cantidad_edificio_norte',
+            'cantidad_edificio_sud',
+            'cantidad_edificio_sucre',
+            
+            ],
+    lineWidth:1,
+    // Labels for the ykeys -- will be displayed when you hover over the
+    // chart.
+    labels: [
+            'sucursal comteco',
+            'sucursal muyurina',
+            'sucursal km0',
+            'sucursal hipodromo',
+            'sucursal quillacollo',
+            'sucursal administrativo',
+            'sucursal tecnico',
+            'sucursal norte',
+            'sucursal sud',
+            'sucursal sucre',
+            ],
+    resize:true,
+    barColors:['#C14d9f','#2CB4AC','skyblue']
+  });
 </script>
